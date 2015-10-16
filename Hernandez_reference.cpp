@@ -44,7 +44,7 @@ int main()
 	int numA = 52;
 	int numB = 96;
 	int numC = 13;
-	int valA = 5002;
+	int valA = -5002;
 	int n = -6352;
 	double a = 1526;
 	double v = 9999;
@@ -54,24 +54,41 @@ int main()
 	
 	
 	//sort
-	cout<< "numA: " << numA << "\t numB: " << numB << "\t numC: " << numC << endl;
+	cout<< "Before:\tnumA: " << numA << "\t numB: " << numB << "\t numC: " << numC << endl; // Test case 1
 	sort(numA, numB, numC);
-	cout<< "numA: " << numA << "\t numB: " << numB << "\t numC: " << numC << endl;
+	cout<< "After: \tnumA: " << numA << "\t numB: " << numB << "\t numC: " << numC << endl;
+	
+	cout<< "Before:\tnumA: " << numA << "\t numB: " << numB << "\t numC: " << numC << endl; // Test case 2
+	sort(numA, numB, numC);
+	cout<< "After: \tnumA: " << numA << "\t numB: " << numB << "\t numC: " << numC << endl << endl;
 	
 	// numDigits
-	cout << "valA: " << valA << "\t n: " << n << endl;
+	cout << "Before:\tvalA: " << valA << "\t n: " << n << endl; // Test Case1
 	numDigits(valA, n);
-	cout << "valA: " << valA << "\t n: " << n << endl;
+	cout << "After: \tvalA: " << valA << "\t n: " << n << endl;
+	
+	cout << "Before:\tvalA: " << numC<< "\t n: " << n << endl; // Test case2
+	numDigits(numC, n);
+	cout << "After: \tvalA: " << numC << "\t n: " << n << endl << endl;
 	
 	// computeSphere
-	cout << "a: " << a << "\t v: " << v << endl;
+	cout << "Before:\ta: " << a << "\t v: " << v << endl; // Test Case1
 	computeSphere(a, v, r);
-	cout << "a: " << a << "\t v: " << v << endl;
+	cout << "After: \ta: " << a << "\t v: " << v << endl;
+	
+	cout << "Before:\ta: " << a << "\t v: " << v << endl; // Test Case2
+	computeSphere(a, v, numA);
+	cout << "After: \ta: " << a << "\t v: " << v << endl << endl;
 	
 	// swap
-	cout << "A: " << A << "\t B: " << B << endl;
+	cout << "Before;\tA: " << A << "\t B: " << B << endl;// Test case 1
 	swap(A,B);
-	cout << "A: " << A << "\t B: " << B << endl;
+	cout << "After: \tA: " << A << "\t B: " << B << endl;
+	
+	cout << "Before:\tA: " << numC << "\t B: " << B << endl;// Test case 1
+	swap(numC,B);
+	cout << "After: \tA: " << numC << "\t B: " << B << endl << endl;
+	
 	return 0;
 }
 void sort(int& numA, int& numB, int& numC)
@@ -89,7 +106,7 @@ void sort(int& numA, int& numB, int& numC)
 		
 		if(temp < numB )
 		{
-			numB = numC;
+			numC = numB;
 			numB = temp;
 		}
 	}
@@ -111,12 +128,19 @@ void sort(int& numA, int& numB, int& numC)
 	}
 	return;
 }
-void numDigits(int& valA, int& n)
+void numDigits(int valA, int& n)
 { 
 	assert(valA >= -10000 && valA <= 10000);
 	assert(n >= -10000 && n <= 10000);
 	string digits = to_string(valA);
-	int count = digits.length();
+	if(valA < 0)
+	{
+		n = digits.length() - 1;
+	}
+	else
+	{
+		n = digits.length();
+	}
 	
 	return;
 }
